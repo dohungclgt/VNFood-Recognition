@@ -1,0 +1,14 @@
+{
+  "food_name": "Mì Quảng gà",
+  "region": "Miền Trung",
+  "description": "Mì Quảng là một món ăn đặc sản nổi tiếng của vùng Quảng Nam và Đà Nẵng, gồm mì làm từ bột gạo xay mịn được tráng thành từng lớp mỏng rồi thái thành dải ngang, ăn kèm với nước dùng đậm đà, thịt gà, tôm, trứng cút và nhiều loại rau sống.",
+  "how_to_cook": "Luộc chín mì Quảng. Nấu nước dùng từ thịt gà với nghệ, hành tỏi, gia vị và một ít nước cho sền sệt. Xếp rau sống và mì vào tô, chan nước dùng lên trên, thêm thịt gà, đậu phộng rang giã nhỏ, bánh tráng nướng và hành lá.",
+  "how_to_eat": "Trộn đều mì, rau sống và nước dùng trước khi ăn. Thường ăn kèm với ớt xanh, chanh và bánh tráng nướng giòn.",
+  "confidence": 98.0,
+  "bounding_box": {
+    "x": 0,
+    "y": 0,
+    "width": 1000,
+    "height": 1000
+  }
+}

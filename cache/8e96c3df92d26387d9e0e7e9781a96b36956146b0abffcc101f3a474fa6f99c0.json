@@ -1,0 +1,14 @@
+{
+  "food_name": "Nem rán",
+  "region": "Miền Bắc",
+  "description": "Nem rán (hoặc chả giò ở miền Nam) là món ăn truyền thống nổi tiếng của Việt Nam với lớp vỏ bánh đa nem giòn rụm bên ngoài và phần nhân gồm thịt băm, mộc nhĩ, nấm hương, miến, giá đỗ cùng gia vị bên trong.",
+  "how_to_cook": "Trộn đều thịt heo băm, miến ngâm mềm thái nhỏ, mộc nhĩ, nấm hương băm nhuyễn, trứng gà và các gia vị. Dùng bánh đa nem (bánh tráng) để gói nhân thành các cuốn tròn vừa ăn. Đun nóng dầu ăn ngập chảo, thả các cuốn nem vào chiên vàng giòn ở lửa vừa.",
+  "how_to_eat": "Thưởng thức khi nem còn nóng, thường ăn kèm với rau sống các loại, bún tươi và chấm nước mắm chua ngọt pha tỏi ớt.",
+  "confidence": 98.5,
+  "bounding_box": {
+    "x": 23,
+    "y": 42,
+    "width": 956,
+    "height": 918
+  }
+}

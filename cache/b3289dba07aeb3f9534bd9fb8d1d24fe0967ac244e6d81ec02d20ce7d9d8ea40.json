@@ -1,0 +1,14 @@
+{
+  "food_name": "Phở bò",
+  "region": "Miền Bắc",
+  "description": "Phở bò là một trong những món ăn truyền thống nổi tiếng nhất của Việt Nam, đặc biệt gắn liền với Hà Nội và miền Bắc. Món ăn gồm bánh phở mềm, nước dùng ngọt thanh được ninh từ xương bò với nhiều loại gia vị thảo mộc, ăn kèm thịt bò tái hoặc chín và hành lá.",
+  "how_to_cook": "Ninh xương bò nhiều giờ cùng gừng, hành khô nướng và các gia vị như hoa hồi, quế, thảo quả để tạo nước dùng ngọt tự nhiên. Trụng bánh phở qua nước sôi rồi cho vào tô, xếp thịt bò thái mỏng lên trên, chan nước dùng nóng và rắc hành hoa thái nhỏ.",
+  "how_to_eat": "Thưởng thức khi còn nóng, có thể vắt thêm chanh, thêm ớt hoặc tương ớt tùy khẩu vị, thường ăn kèm với rau thơm.",
+  "confidence": 98.5,
+  "bounding_box": {
+    "x": 62,
+    "y": 155,
+    "width": 763,
+    "height": 827
+  }
+}

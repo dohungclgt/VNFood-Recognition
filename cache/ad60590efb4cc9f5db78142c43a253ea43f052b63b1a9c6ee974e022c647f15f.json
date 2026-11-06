@@ -1,0 +1,14 @@
+{
+  "food_name": "Phở gà",
+  "region": "Miền Bắc",
+  "description": "Phở gà là món ăn truyền thống nổi tiếng của Việt Nam với bánh phở mềm, thịt gà dai ngọt, nước dùng thanh trong được hầm từ xương gà và các loại gia vị đặc trưng.",
+  "how_to_cook": "Hầm xương gà với hành khô, gừng nướng và các gia vị như thảo quả, hoa hồi để lấy nước dùng trong và ngọt thanh. Luộc chín gà rồi lọc lấy thịt thái miếng. Trần bánh phở qua nước sôi, xếp thịt gà lên trên, chan nước dùng nóng hổi và rắc hành hoa, rau thơm.",
+  "how_to_eat": "Thưởng thức khi còn nóng kèm với các loại rau sống, chanh, ớt và nước mắm hoặc xì dầu tùy khẩu vị. Có thể ăn kèm quẩy giòn.",
+  "confidence": 98.0,
+  "bounding_box": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1000.0,
+    "height": 1000.0
+  }
+}

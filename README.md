@@ -1,102 +1,152 @@
+# 🍜 VNFood Recognition
 
-# VNFood Recognition
+**Ứng dụng nhận diện món ăn Việt Nam từ hình ảnh bằng Google Gemini, xây dựng với Python và Streamlit.**
 
-VNFood Recognition là hệ thống nhận dạng hình ảnh được thiết kế để nhận diện và phân loại các món ăn Việt Nam. Dự án sử dụng các mô hình học sâu để xử lý hình ảnh món ăn và đưa ra tên món ăn dự đoán kèm theo điểm tin cậy. Dự án này có thể được sử dụng trong các ứng dụng như nhận diện món ăn trong các ứng dụng di động hoặc hệ thống phân loại món ăn.
+Tải ảnh món ăn lên, chọn vùng miền và ngôn ngữ, sau đó nhận kết quả gồm tên món ăn, mô tả, cách chế biến, cách thưởng thức và vùng được AI ước lượng là chứa món ăn chính.
 
-## Mục lục
+> **Trạng thái:** Ứng dụng chạy cục bộ. Kết quả nhận diện, điểm tin cậy và vùng đánh dấu đều do AI ước lượng; không bảo đảm chính xác tuyệt đối.
 
-- [Tổng quan](#tổng-quan)
-- [Cài đặt](#cài-đặt)
-- [Cách sử dụng](#cách-sử-dụng)
-- [Đóng góp](#đóng-góp)
-- [Giấy phép](#giấy-phép)
-- [Liên hệ](#liên-hệ)
+## ✨ Tính năng
 
-## Tổng quan
+- 📸 **Nhận diện từ ảnh:** hỗ trợ JPG, JPEG và PNG.
+- 🍽️ **Thông tin món ăn:** tên, vùng miền, mô tả, cách chế biến và cách thưởng thức.
+- 🌐 **Hai ngôn ngữ:** Tiếng Việt và English.
+- 🗺️ **Gợi ý vùng miền:** Bắc, Trung hoặc Nam (đây là thông tin gợi ý, không ép AI kết luận).
+- 🎯 **Bounding box:** vẽ khung ước lượng quanh món ăn chính nếu Gemini trả về tọa độ hợp lệ.
+- ⚡ **Cache cục bộ:** giảm số lần gọi API với cùng ảnh, vùng miền, ngôn ngữ và phiên bản model.
+- 🔄 **Phân tích lại / Xóa cache:** làm mới kết quả khi cần.
 
-VNFood Recognition được xây dựng bằng các kỹ thuật học máy hiện đại, sử dụng các mạng nơ-ron tích chập (CNN) và sử dụng Google Vision API để phân tích hình ảnh các món ăn. Hệ thống này đã được huấn luyện trên một bộ dữ liệu các món ăn Việt Nam, giúp nó dự đoán chính xác các món ăn từ hình ảnh. 
+## 🧰 Công nghệ
 
-## Tính năng
+| Thành phần | Sử dụng |
+| --- | --- |
+| Ngôn ngữ | Python |
+| Giao diện | Streamlit |
+| Phân tích ảnh | Google Gemini API qua `google-genai` |
+| Xử lý ảnh | Pillow |
+| Lưu kết quả | JSON cache trên máy cục bộ |
 
-- Phân loại hình ảnh các món ăn Việt Nam với độ chính xác cao.
-- Cung cấp điểm tin cậy cho các dự đoán.
-- Giao diện dễ sử dụng để tích hợp mô hình vào ứng dụng.
-- Được xây dựng bằng các thư viện học sâu phổ biến như TensorFlow/PyTorch (tùy thuộc vào thư viện được sử dụng).
-- Cung cấp kết quả: độ chính xác, mô tả món ăn, cách chế biến và cách thưởng thức
+Model được cấu hình tại `core/gemini_handler.py` (trong bản phát hành hiện tại: `gemini-3.5-flash-lite`). Khả dụng thực tế phụ thuộc vào Google Gemini API và tài khoản sử dụng.
 
-## Cài đặt
+## 🚀 Cài đặt và chạy trên Windows
 
-Để bắt đầu sử dụng hệ thống VNFood Recognition, hãy làm theo các bước dưới đây:
+**Yêu cầu:** Python và pip; một API Key Gemini hợp lệ. Có thể tạo API Key tại [Google AI Studio](https://aistudio.google.com/apikey).
 
-### Yêu cầu
+**1. Tải dự án và mở PowerShell trong thư mục dự án**
 
-- Python 3.x
-- pip (trình cài đặt gói Python)
-- TensorFlow/PyTorch (tùy thuộc vào thư viện được sử dụng)
-- Google Vision API (https://aistudio.google.com/api-keys)
+Nếu đã đưa dự án lên GitHub, có thể clone bằng lệnh (thay URL bằng repository thật):
 
-### Bước 1: Clone repository
-
-```bash
-git clone https://github.com/dohungclgt/VNFood-Recognition.git
+```powershell
+git clone https://github.com/<your-username>/VNFood-Recognition.git
 cd VNFood-Recognition
 ```
 
-### Bước 2: Cài đặt các thư viện phụ thuộc
+Nếu đã có mã nguồn trên máy, chỉ cần mở PowerShell trong thư mục `VNFood-Recognition`.
 
-Tạo môi trường ảo (khuyến khích nhưng không bắt buộc):
+**2. Tạo môi trường ảo và cài thư viện**
 
-```bash
-python -m venv venv
-source venv/bin/activate  # Trên Windows sử dụng 'venv\Scripts\activate'
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-Cài đặt các gói Python cần thiết:
+**3. Cấu hình Gemini API Key**
 
-```bash
-pip install -r requirements.txt
+```powershell
+Copy-Item .streamlit\secrets.toml.example .streamlit\secrets.toml
 ```
 
-### Bước 3: Chuẩn bị API
+Mở `.streamlit/secrets.toml` và điền API Key của bạn:
 
-Truy cập vào: https://aistudio.google.com/api-keys và dán API key của bạn vào thư mục (tạo thư mục nếu chưa có):
-```bash
-.streamlit/secrets.toml
-```
-Dán key của bạn vào dòng code này
 ```toml
 [general]
-GOOGLE_API_KEY = "API key here"
+GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY"
 ```
 
-### Bước 4: Chạy hệ thống
+> 🔐 **Bảo mật:** Không commit hoặc chia sẻ `secrets.toml`, API Key thật hay nội dung cache cá nhân. File mẫu `.streamlit/secrets.toml.example` không chứa khóa bí mật.
 
-Để chạy ứng dụng, chạy theo dòng lệnh này ở Command Prompt hoặc Terminal trên VSCode:
+**4. Chạy ứng dụng**
 
-```bash
-streamlit run app.py
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Lệnh này sẽ chạy localhost, việc của mình chỉ cần chọn ngôn ngữ, vùng miền, upload ảnh món ăn và ấn phân tích.
+Mở URL localhost được Streamlit in trong terminal (thường là `http://localhost:8501`).
 
+## 🖥️ Cách sử dụng
 
-## Đóng góp
+1. Ở thanh bên trái, chọn **Language** và **Region**.
+2. Tải ảnh bằng ô **Upload a Vietnamese food image**.
+3. Nhấn **Analyze / Phân tích**.
+4. Xem ảnh đánh dấu món ăn (nếu có tọa độ), tên món, điểm tin cậy ước lượng và các phần mô tả.
+5. Sử dụng **Reload Analysis** để gọi API lại, hoặc **Clear Cache** để xóa kết quả đã lưu.
 
-Nếu bạn muốn đóng góp vào dự án VNFood Recognition, hãy fork repository và gửi pull request. Vui lòng làm theo các hướng dẫn sau:
+## 📁 Cấu trúc thư mục
 
-1. Fork repository.
-2. Tạo một nhánh tính năng (feature branch).
-3. Viết các bài kiểm tra để đảm bảo các thay đổi của bạn hoạt động đúng.
-4. Gửi pull request với mô tả rõ ràng về những gì bạn đã làm.
+```text
+VNFood-Recognition/
+├── app.py                       # Giao diện Streamlit
+├── core/
+│   ├── gemini_handler.py        # Gọi Gemini và chuẩn hóa kết quả JSON
+│   ├── image_tools.py           # Vẽ bounding box trên ảnh
+│   └── utils.py                 # Cache key, đọc/ghi và xóa cache
+├── tests/
+│   └── test_core.py             # Unit tests
+├── .streamlit/
+│   └── secrets.toml.example     # Mẫu cấu hình (được phép commit)
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
 
-## Giấy phép
+Các thư mục `.venv/`, `cache/` và file `.streamlit/secrets.toml` được tạo trên máy cục bộ và **không nên đưa lên GitHub**.
 
-Có thể dùng để tham khảo cách làm. Có thể sử dụng như là project của riêng mình
+## ✅ Chạy kiểm thử
 
-## Liên hệ
+```powershell
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
 
-Nếu bạn có bất kỳ câu hỏi nào hoặc cần thêm sự hỗ trợ, đừng ngần ngại liên hệ với mình:
+Kiểm thử cục bộ tập trung vào chuẩn hóa phản hồi AI, bounding box và khóa cache. Kiểm thử thực tế với Gemini cần API Key hợp lệ và hạn mức API còn khả dụng.
 
-- **Tên**: dohungclgt
-- **GitHub**: https://github.com/dohungclgt
-- **discord**: dohungclgt
+## 🧩 Dữ liệu đầu ra
+
+Ứng dụng chuẩn hóa kết quả nhận diện thành một JSON object:
+
+```json
+{
+  "food_name": "Phở bò",
+  "confidence": 92,
+  "region": "Miền Bắc",
+  "description": "Mô tả món ăn...",
+  "how_to_cook": "Các bước chế biến...",
+  "how_to_eat": "Cách thưởng thức...",
+  "bounding_box": {"x": 120, "y": 180, "width": 710, "height": 590}
+}
+```
+
+*Đây chỉ là dữ liệu minh họa.* Tọa độ bounding box được chuẩn hóa trong khoảng **0–1000**, tính từ góc trên bên trái ảnh; `image_tools.py` quy đổi sang pixel khi vẽ. Nếu AI không xác định được khung, `bounding_box` có thể là `null`. Điểm `confidence` là mức tự đánh giá do mô hình tạo ra, **không phải xác suất đã hiệu chuẩn**.
+
+## 🛠️ Xử lý sự cố thường gặp
+
+| Triệu chứng | Cách kiểm tra |
+| --- | --- |
+| `StreamlitSecretNotFoundError` | Tạo `.streamlit/secrets.toml`, kiểm tra `[general]` và `GOOGLE_API_KEY`. |
+| `404 NOT_FOUND` từ Gemini | Kiểm tra model trong `core/gemini_handler.py` và danh sách model tài khoản được phép truy cập. |
+| API trả lỗi `403` hoặc `429` | Kiểm tra quyền truy cập API và quota trên Google AI Studio. |
+| Không có bounding box | AI có thể trả `null` hoặc tọa độ không hợp lệ; ảnh gốc vẫn được hiển thị. |
+| Kết quả không đổi | Nhấn **Reload Analysis** hoặc **Clear Cache**. |
+
+## 🔒 Quyền riêng tư và lưu ý
+
+Ảnh được gửi tới Gemini API để phân tích khi bạn yêu cầu nhận diện; hãy tránh tải lên ảnh có thông tin nhạy cảm nếu không có quyền chia sẻ. Kết quả cache được lưu cục bộ. Việc sử dụng Gemini API phải tuân thủ điều khoản và giới hạn dịch vụ của Google.
+
+## 📌 Định hướng phát triển
+
+- [ ] Bổ sung ảnh chụp màn hình/gif demo giao diện trong README.
+- [ ] Mở rộng nhận diện nhiều món trong cùng một ảnh.
+- [ ] Kiểm thử tích hợp API và cải thiện đánh giá chất lượng nhận diện.
+
+---
+
+**VNFood Recognition** — Exploring Vietnamese cuisine through computer vision and generative AI.
