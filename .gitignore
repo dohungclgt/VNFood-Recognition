@@ -1,10 +1,10 @@
-# Python cache
-__pycache__/
-*.pyc
-
-# Environment
+.streamlit/secrets.toml
 .env
+.env.*
+!.env.example
+cache/
+.venv/
 venv/
-.env.local
-.cache/
-.streamlit/
+__pycache__/
+*.py[cod]
+.pytest_cache/
