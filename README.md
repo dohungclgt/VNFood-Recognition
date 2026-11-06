@@ -37,7 +37,7 @@ Model được cấu hình tại `core/gemini_handler.py` (trong bản phát hà
 Nếu đã đưa dự án lên GitHub, có thể clone bằng lệnh (thay URL bằng repository thật):
 
 ```powershell
-git clone https://github.com/<your-username>/VNFood-Recognition.git
+git clone https://github.com/dohungclgt/VNFood-Recognition.git
 cd VNFood-Recognition
 ```
 
